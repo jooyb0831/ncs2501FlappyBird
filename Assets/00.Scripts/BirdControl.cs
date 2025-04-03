@@ -33,6 +33,7 @@ public class BirdControl : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //todo:게임오버
+        GameManager.Instance.GameOver();
         Debug.Log("GameOver");
     }
 }
