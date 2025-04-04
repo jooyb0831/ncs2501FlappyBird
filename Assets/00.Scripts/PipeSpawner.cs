@@ -11,6 +11,11 @@ public class PipeSpawner : MonoBehaviour
 
     private void Update()
     {
+        //게임 상태가 PLAY 일때만 PIPE를 생성
+        if (GameManager.Instance.GameState != GameManager.State.PLAY)
+        {
+            return;
+        }
         timer += Time.deltaTime;
         if (timer >= maxTime)
         {
@@ -28,6 +33,6 @@ public class PipeSpawner : MonoBehaviour
         //랜덤으로 녹색, 빨간색 파이프 선택
         GameObject pipePf = (Random.Range(0, 100) > 20) ? pipePrefab : redPipePrefab;
         GameObject obj = Instantiate(pipePf, spawnPos, Quaternion.identity);
-        Destroy(obj, 5f);
+        Destroy(obj, 7f);
     }
 }
