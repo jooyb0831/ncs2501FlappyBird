@@ -241,6 +241,7 @@ MonoBehaviour:
   - {fileID: 1251813408, guid: a6b1360cc71324d4aa77701e3b8c57ee, type: 3}
   - {fileID: -852652648, guid: a6b1360cc71324d4aa77701e3b8c57ee, type: 3}
   floorAnim: {fileID: 1207834781}
+  readAnim: {fileID: 0}
   acReady: {fileID: 8300000, guid: 725249ecf5de1164c8180ce1c2d702d2, type: 3}
   acHit: {fileID: 8300000, guid: 8741ceafa2325d04784ddfdd14476acf, type: 3}
 --- !u!4 &245399806
@@ -588,7 +589,7 @@ GameObject:
   - component: {fileID: 703471001}
   - component: {fileID: 703471000}
   m_Layer: 5
-  m_Name: ReadyImg
+  m_Name: ReadyTxtImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +954,7 @@ GameObject:
   - component: {fileID: 1014689776}
   - component: {fileID: 1014689775}
   m_Layer: 5
-  m_Name: ReadyImg 1
+  m_Name: TapImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1254,13 +1255,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1255845954}
+  - component: {fileID: 1255845955}
   m_Layer: 5
   m_Name: Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1255845954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1280,9 +1282,30 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.4500122, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1255845955
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255845953}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8f00545facfb72e4ea36239477c17107, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1342921867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,7 +1783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1527822058
 RectTransform:
   m_ObjectHideFlags: 0

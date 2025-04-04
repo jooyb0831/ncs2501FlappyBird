@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] stateUI; // 각 상태의 UI
     [SerializeField] Sprite[] bgSprite;
     [SerializeField] Animator floorAnim;
+    [SerializeField] Animator readAnim;
     [SerializeField] AudioClip acReady;
     [SerializeField] AudioClip acHit;
 
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour
     {
         //부딪히는 소리
         PlayAudio(acHit);
-        
+
         ChangeState(State.GAMEOVER);
         //바닥 애니메이션 멈추기
         floorAnim.enabled = false;
