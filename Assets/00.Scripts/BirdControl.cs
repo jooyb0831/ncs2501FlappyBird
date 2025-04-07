@@ -12,6 +12,9 @@ public class BirdControl : MonoBehaviour
     [SerializeField] float rotateSpeed = 10f;
     [SerializeField] AudioClip acWing;
     [SerializeField] AudioClip acDie;
+    [SerializeField] Animator flapAnim;
+    [SerializeField] Animator birdAnim;
+    [SerializeField] AudioClip acReady;
     private void Start()
     {   
         //게임매니저 받아오기
@@ -68,14 +71,31 @@ public class BirdControl : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         //게임 플레이 중일 때만
-        
         if(gameMgr.GameState != GMState.PLAY) return;
         gameMgr.GameOver();
-        GetComponent<Animator>().enabled = false;
+        flapAnim.enabled = false;
+        
         if(transform.position.y > -0.3f)
         {
             gameMgr.PlayAudio(acDie);
         }
         Debug.Log("GameOver");
+    }
+
+    public void BirdReady()
+    {
+        //새 뒤로 움직임
+        birdAnim.SetTrigger("Ready");
+        gameMgr.PlayAudio(acReady);
+    }
+
+    public void BirdPlay()
+    {
+        birdAnim.enabled = false;
+    }
+
+    public void BirdDead()
+    {
+
     }
 }

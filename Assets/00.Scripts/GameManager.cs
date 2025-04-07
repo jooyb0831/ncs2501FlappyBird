@@ -20,13 +20,15 @@ public class GameManager : MonoBehaviour
 
     //new AudioSource audio;//audio가 이미 있어서 new로 선언해야 함
     private AudioSource audioSoruce; 
+    
 
+    [SerializeField] BirdControl bird;
     [SerializeField] SpriteRenderer backGround;
     [SerializeField] GameObject restartBtn;
     [SerializeField] GameObject[] stateUI; // 각 상태의 UI
     [SerializeField] Sprite[] bgSprite;
     [SerializeField] Animator floorAnim;
-    [SerializeField] Animator readAnim;
+    [SerializeField] Animator birdAnim;
     [SerializeField] AudioClip acReady;
     [SerializeField] AudioClip acHit;
 
@@ -91,23 +93,29 @@ public class GameManager : MonoBehaviour
     public void GameReady()
     {
         ChangeState(State.READY);
-        PlayAudio(acReady);
+        bird.BirdReady();
     }
 
     public void GamePlay()
     {
         ChangeState(State.PLAY);
+        bird.BirdPlay();
     }
     public void GameOver()
     {
         //부딪히는 소리
         PlayAudio(acHit);
-
         ChangeState(State.GAMEOVER);
+
         //바닥 애니메이션 멈추기
         floorAnim.enabled = false;
+
+        //베스트 스코어 체크
+        ScoreManager.Instance.CheckBestScore();
+        
         //restart버튼은 일단 꺼둠
         restartBtn.SetActive(false);
+        
         //코루틴을 사용하여 잠시 시간을 지연시킨다.
         StartCoroutine(nameof(StopTimer));
     }
@@ -117,6 +125,7 @@ public class GameManager : MonoBehaviour
         //2초 기다렸다 다음 로직
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0;
+
         //Restart 버튼 나오게
         restartBtn.SetActive(true);
 
@@ -130,6 +139,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 2;
+        
         //현재 씬을 다시 불러오기
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
