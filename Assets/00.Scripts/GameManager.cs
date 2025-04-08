@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip acReady;
     [SerializeField] AudioClip acHit;
 
+    [SerializeField] BestScoreUI bestUI;
 
     private State gameState; //게임 상태를 저장할 변수
     public State GameState => gameState;
@@ -79,16 +80,11 @@ public class GameManager : MonoBehaviour
         stateUI[temp].SetActive(true);
     }
 
-    public void PlayAudio(AudioClip clip)
-    {
-        //파라미터로 넘어온 오디오 클립을 한 번 플레이시킨다.
-        audioSoruce.PlayOneShot(clip);
-    }
 
-    public void GameTitle()
-    {
-        ChangeState(State.TITLE);
-    }
+    //파라미터로 넘어온 오디오 클립을 한 번 플레이시킨다.
+    public void PlayAudio(AudioClip clip) => audioSoruce.PlayOneShot(clip);
+
+    public void GameTitle() => ChangeState(State.TITLE);
 
     public void GameReady()
     {
@@ -101,6 +97,7 @@ public class GameManager : MonoBehaviour
         ChangeState(State.PLAY);
         bird.BirdPlay();
     }
+
     public void GameOver()
     {
         //부딪히는 소리
@@ -128,13 +125,9 @@ public class GameManager : MonoBehaviour
 
         //Restart 버튼 나오게
         restartBtn.SetActive(true);
-
     }
     
-    public void BestScore()
-    {
-        ChangeState(State.BESTSCORE);
-    }
+    public void BestScore() => ChangeState(State.BESTSCORE);
 
     public void RestartGame()
     {

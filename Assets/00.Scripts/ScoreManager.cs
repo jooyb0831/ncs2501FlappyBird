@@ -1,7 +1,9 @@
 using System.Data.Common;
 using TMPro;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class ScoreData
 {
@@ -17,9 +19,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     [SerializeField] TMP_Text scoreText;
     [SerializeField] GameOverUI gameoverUI;
+    [SerializeField] BestScoreUI bsUI;
     private int score = 0;
     public int Score => score;
-    private int rank = 0;
+    private int rank;
     public int Rank => rank;
     ScoreData data = new ScoreData();
 
@@ -34,9 +37,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        data.Rank1 = PlayerPrefs.GetInt("RANK1");
-        data.Rank2 = PlayerPrefs.GetInt("RANK2");
-        data.Rank3 = PlayerPrefs.GetInt("RANK3");
+
     }
 
     public void UpdateScore(int value)
@@ -47,8 +48,17 @@ public class ScoreManager : MonoBehaviour
 
     public void CheckBestScore()
     {
-        //todo 실제 랭크 계산
-
+        rank = bsUI.CaculateRank(score);
         gameoverUI.UpdateResult();
     }
+
+#if UNITY_EDITOR
+    //베스트 스코어 리셋
+    [MenuItem("FlappyBird/ResetBestScore")]
+    public static void ResetBestScore()
+    {
+        PlayerPrefs.DeleteAll();
+        Debug.Log("Best Score reset");
+    }
+#endif
 }

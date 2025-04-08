@@ -51,14 +51,6 @@ public class BirdControl : MonoBehaviour
                     rb.gravityScale = 1;
                 }
             }
-
-            else if (gameMgr.GameState == GMState.GAMEOVER)
-            {
-
-            }
-
-
-
         }
     }
 

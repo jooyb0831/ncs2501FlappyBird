@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,28 +19,24 @@ public class GameOverUI : MonoBehaviour
 
     public void UpdateResult()
     {
-        //3등 안이면 메달 표시
-        if(scoreMgr.Rank <= 3)
+        if (scoreMgr == null)
         {
-            switch(scoreMgr.Rank)
-            {
-                case 3 :
-                medalImg.sprite = medalSprites[3];
-                break;
-                case 2 :
-                medalImg.sprite = medalSprites[2];
-                break;
-                case 1 :
-                medalImg.sprite = medalSprites[1];
-                break;
-            }
+            scoreMgr = ScoreManager.Instance;
+        }
+
+        //3등 안이면 메달 표시
+        if (scoreMgr.Rank <= 3)
+        {
+            medalImg.gameObject.SetActive(true);
+            medalImg.sprite = medalSprites[scoreMgr.Rank];
         }
         else
         {
-            //medalImg.sprite = medalSprites[0];
             medalImg.gameObject.SetActive(false);
         }
         scoreTxt.text = scoreMgr.Score.ToString();
+
         //todo:베스트스코어
+        bestScoreTxt.text = PlayerPrefs.GetInt("RANKSCORE0", 0).ToString();
     }
 }
